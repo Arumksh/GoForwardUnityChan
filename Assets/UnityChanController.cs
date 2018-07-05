@@ -13,6 +13,8 @@ public class UnityChanController : MonoBehaviour {
     float jumpVelocity = 20;
     float deadLine = -9f;
 
+    bool jump = false;
+
     // Use this for initialization
     void Start () {
         this.animator = GetComponent<Animator>();
@@ -31,7 +33,7 @@ public class UnityChanController : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0) && isGround)
         {
-            this.rigid2D.velocity = new Vector2(0, this.jumpVelocity);
+            jump = true;
         }
 
         if(Input.GetMouseButton(0) == false)
@@ -52,6 +54,15 @@ public class UnityChanController : MonoBehaviour {
         {
             Vector2 pos = this.gameObject.transform.position;
             this.gameObject.transform.position = new Vector2(-2.9f, pos.y);
+        }
+    }
+
+    void FixedUpdate() 
+    {
+        if (jump == true)
+        {
+            this.rigid2D.velocity = new Vector2(0, this.jumpVelocity);
+            jump = false;
         }
     }
 }

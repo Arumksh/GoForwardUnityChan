@@ -10,7 +10,7 @@ public class UIController : MonoBehaviour
     GameObject runLengthtext;
 
     float len = 0f;
-    float speed = 0.03f;
+    float speed = 2.0f;
 
     bool isGameOver = false;
 
@@ -26,7 +26,7 @@ public class UIController : MonoBehaviour
     {
         if (this.isGameOver == false)
         {
-            this.len += this.speed;
+            this.len += this.speed * Time.deltaTime;
             this.runLengthtext.GetComponent<Text>().text = "Distance:" + len.ToString("F2") + "m";
         }
 
